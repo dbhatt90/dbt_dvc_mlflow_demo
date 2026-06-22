@@ -58,19 +58,19 @@ stages:
         train.learning_rate: 0.1
         train.max_depth: 5
         train.max_iter: 1000
-        train.model: random_forest
+        train.model: logistic_regression
         train.n_estimators: 100
         train.n_estimators_xgb: 100
         train.random_state: 42
     outs:
     - path: models/mlflow_run_id.txt
       hash: md5
-      md5: 54fb6c45dfe195e9e1e01d3058dbb488
+      md5: 3710262ea908ac71fba84ad18e99aff2
       size: 32
     - path: models/model.pkl
       hash: md5
-      md5: d059ba1a75887971c6960b952e6ad295
-      size: 515927
+      md5: 86de8a3372a667271bfa6096d4989c98
+      size: 1054
   evaluate:
     cmd: python src/evaluate.py
     deps:
@@ -84,8 +84,8 @@ stages:
       size: 2360
     - path: models/model.pkl
       hash: md5
-      md5: d059ba1a75887971c6960b952e6ad295
-      size: 515927
+      md5: 86de8a3372a667271bfa6096d4989c98
+      size: 1054
     - path: src/evaluate.py
       hash: md5
       md5: b6c716a835cd8774dc9891e94dfff942
@@ -96,9 +96,9 @@ stages:
     outs:
     - path: metrics.json
       hash: md5
-      md5: 8f16c749532063171fdd12b09ebcbb36
-      size: 103
+      md5: 1bf91dc3d94a5f126f20ba574eadf3a7
+      size: 104
     - path: plots/predictions.csv
       hash: md5
-      md5: a8d6cfe1ea7e597bd52fbfaf44b28aa4
-      size: 27336
+      md5: 9b162c9fe5b4fdd9891e69f04dab7dfe
+      size: 27313

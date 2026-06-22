@@ -1,0 +1,4 @@
+[core]
+    remote = gcs_storage
+['remote "gcs_storage"']
+    url = gs://dvc_mlflow_tracking/dvc-store

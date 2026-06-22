@@ -1,0 +1,50 @@
+stages:
+  preprocess:
+    cmd: python src/preprocess.py
+    deps:
+      - src/preprocess.py
+      - data/raw/customer_features.csv
+    params:
+      - preprocess.test_size
+      - preprocess.random_state
+      - preprocess.churn_days
+    outs:
+      - data/processed/X_train.csv
+      - data/processed/X_test.csv
+      - data/processed/y_train.csv
+      - data/processed/y_test.csv
+      - data/processed/scaler_params.json
+
+  train:
+    cmd: python src/train.py
+    deps:
+      - src/train.py
+      - data/processed/X_train.csv
+      - data/processed/y_train.csv
+    params:
+      - train.model
+      - train.random_state
+      - train.n_estimators
+      - train.max_depth
+      - train.C
+      - train.max_iter
+      - train.learning_rate
+      - train.n_estimators_xgb
+    outs:
+      - models/model.pkl
+      - models/mlflow_run_id.txt
+
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+      - src/evaluate.py
+      - models/model.pkl
+      - data/processed/X_test.csv
+      - data/processed/y_test.csv
+    params:
+      - evaluate.threshold
+    metrics:
+      - metrics.json:
+          cache: false
+    plots:
+      - plots/predictions.csv

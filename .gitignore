@@ -6,3 +6,5 @@ logs/
 dbt_packages/
 *.csv
 .DS_Store
+data/
+mlflow.dbmlruns/

@@ -1,1 +1,8 @@
 venv/
+*.xlsx
+*.duckdb
+target/
+logs/
+dbt_packages/
+*.csv
+.DS_Store

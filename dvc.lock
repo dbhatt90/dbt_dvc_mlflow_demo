@@ -50,27 +50,27 @@ stages:
       size: 9412
     - path: src/train.py
       hash: md5
-      md5: 848bebaa769801178d7c27e9b5619d70
-      size: 3232
+      md5: 45873ecce4f5a6e63be8830084edfbe7
+      size: 3348
     params:
       params.yaml:
         train.C: 1.0
         train.learning_rate: 0.1
         train.max_depth: 5
         train.max_iter: 1000
-        train.model: logistic_regression
+        train.model: xgboost
         train.n_estimators: 100
         train.n_estimators_xgb: 100
         train.random_state: 42
     outs:
     - path: models/mlflow_run_id.txt
       hash: md5
-      md5: 3710262ea908ac71fba84ad18e99aff2
+      md5: eb301c735535c6355c5b7ecee35b1303
       size: 32
     - path: models/model.pkl
       hash: md5
-      md5: 86de8a3372a667271bfa6096d4989c98
-      size: 1054
+      md5: c5b3ce83c90ff13a251d7f907ed6796f
+      size: 273992
   evaluate:
     cmd: python src/evaluate.py
     deps:
@@ -84,8 +84,8 @@ stages:
       size: 2360
     - path: models/model.pkl
       hash: md5
-      md5: 86de8a3372a667271bfa6096d4989c98
-      size: 1054
+      md5: c5b3ce83c90ff13a251d7f907ed6796f
+      size: 273992
     - path: src/evaluate.py
       hash: md5
       md5: b6c716a835cd8774dc9891e94dfff942
@@ -96,9 +96,9 @@ stages:
     outs:
     - path: metrics.json
       hash: md5
-      md5: 1bf91dc3d94a5f126f20ba574eadf3a7
-      size: 104
+      md5: 2081146749135b5d161108f944d8add1
+      size: 102
     - path: plots/predictions.csv
       hash: md5
-      md5: 9b162c9fe5b4fdd9891e69f04dab7dfe
-      size: 27313
+      md5: f42d098fd92872affa354a852cfbea07
+      size: 17452

@@ -4,7 +4,7 @@ preprocess:
   churn_days: 90        #business rule: customers inactive for 90+ days = churned
 
 train:
-  model: logistic_regression
+  model: xgboost
   random_state: 42
   # random forest params
   n_estimators: 100

@@ -5,6 +5,7 @@ import yaml
 import os
 import mlflow
 import mlflow.sklearn
+import mlflow.xgboost
 import subprocess
 
 # create the models folder if it doesn't exist
@@ -79,7 +80,10 @@ with mlflow.start_run():
     mlflow.log_params({k: v for k, v in train_params.items()})
 
     # log model artifact
-    mlflow.sklearn.log_model(model, "model")
+    if MODEL_TYPE =='xgboost':
+        mlflow.xgboost.log_model(model, "model")
+    else:
+        mlflow.sklearn.log_model(model, "model")
 
     # store the run_id so evaluate.py can log to the SAME run
     with open("models/mlflow_run_id.txt", "w") as f:

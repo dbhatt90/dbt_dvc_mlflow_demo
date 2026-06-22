@@ -5,6 +5,7 @@ preprocess:
 
 train:
   model: random_forest
+  random_state: 42
   # random forest params
   n_estimators: 100
   max_depth: 5
@@ -14,7 +15,7 @@ train:
   max_iter: 1000
 
   # xgboost params
-  learning rate: 0.1
+  learning_rate: 0.1
   n_estimators_xgb: 100
   
 evaluate:

@@ -7,6 +7,9 @@ import mlflow
 import mlflow.sklearn
 import subprocess
 
+# create the models folder if it doesn't exist
+os.makedirs("models", exist_ok=True)
+
 # load train params
 with open("params.yaml") as f:
    params = yaml.safe_load(f)
@@ -84,7 +87,6 @@ with mlflow.start_run():
         f.write(mlflow.active_run().info.run_id)
 
 # ── save model for DVC ────────────────────────────────────────
-os.makedirs("models", exist_ok=True)
 with open("models/model.pkl", "wb") as f:
     pickle.dump(model, f)
 

@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "Cleaned transaction-level data. One row per line item. Cancellations, returns, and guest checkouts excluded."
+    columns:
+      - name: invoice_id
+        description: "Unique invoice identifier. Cancellation invoices (prefix C) already removed."
+        tests:
+          - not_null
+
+      - name: customer_id
+        description: "Customer identifier. Nulls (guest checkouts) removed in staging."
+        tests:
+          - not_null
+
+      - name: quantity
+        description: "Units purchased. Always positive after staging filter."
+        tests:
+          - not_null
+
+      - name: line_revenue
+        description: "quantity * unit_price for this line item."
+        tests:
+          - not_null

@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: customer_features
+    description: "One row per customer. RFM features ready for ML churn pipeline."
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+      - name: recency_days
+        tests:
+          - not_null
+      - name: monetary_value
+        tests:
+          - not_null
+
+  - name: product_revenue
+    description: "One row per product. Revenue and volume aggregates."
+    columns:
+      - name: stock_code
+        tests:
+          - unique
+          - not_null
+
+  - name: monthly_revenue
+    description: "One row per calendar month. Revenue trend over time."
+    columns:
+      - name: month
+        tests:
+          - unique
+          - not_null

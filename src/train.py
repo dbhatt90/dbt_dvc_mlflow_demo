@@ -66,16 +66,15 @@ model.fit(X_train, y_train)
 print("Training complete")
 
 # ── mlflow logging ────────────────────────────────────────────
-git_sha = subprocess.check_output(
-    ["git", "rev-parse", "HEAD"]
-).decode().strip()
+dvc_exp_name = os.environ.get("DVC_EXP_NAME", "not_a_dvc_experiment")
+print(f'Experiment name: {dvc_exp_name}')
 
 mlflow.set_experiment("churn-classifier")
 
 with mlflow.start_run():
     # log all params flat
     mlflow.log_param("model_type",   MODEL_TYPE)
-    mlflow.log_param("git_commit",   git_sha)
+    mlflow.log_param("dvc_exp_name",   dvc_exp_name)
     mlflow.log_param("train_size",   len(X_train))
     mlflow.log_params({k: v for k, v in train_params.items()})
 

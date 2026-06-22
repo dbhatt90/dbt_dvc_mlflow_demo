@@ -1,0 +1,39 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python src/preprocess.py
+    deps:
+    - path: data/raw/customer_features.csv
+      hash: md5
+      md5: fad705207656dfd64c2d922c9f42f0bb
+      size: 390878
+    - path: src/preprocess.py
+      hash: md5
+      md5: fc536c6d4e0fe8b8a0c7c8540c1beebb
+      size: 3544
+    params:
+      params.yaml:
+        preprocess.churn_days: 90
+        preprocess.random_state: 42
+        preprocess.test_size: 0.2
+    outs:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: 724054e6192cd06bebe82d4c653be97c
+      size: 182513
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: f89483628a98fb4676a2a751f6bde417
+      size: 729351
+    - path: data/processed/scaler_params.json
+      hash: md5
+      md5: 73fc003e255f2cc0e9b4f19d2540a35a
+      size: 461
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: f41903588430d7d776e0d95bbc66d6f2
+      size: 2360
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: e8b0038cb302639e2a45ba8b95def434
+      size: 9412

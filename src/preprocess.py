@@ -29,7 +29,7 @@ print(df['churned'].value_counts())
 print(f"Churn rate: {df['churned'].mean():.2%}")
 
 # feature selection
-FEATURES = df.columns.drop(['snapshot_date', 'churned','primary_country']).tolist()
+FEATURES = df.columns.drop(['snapshot_date', 'churned','primary_country', 'recency_days','customer_id']).tolist()
 
 # country encoding
 TOP_N_COUNTRIES = 5
@@ -66,7 +66,6 @@ print(f"\nTrain size: {len(X_train)}, Test size: {len(X_test)}")
 # ── scale numeric features ────────────────────────────────────
 # country dummy columns are already 0/1, only scale continuous features
 NUMERIC_FEATURES = [
-    "recency_days",
     "frequency",
     "monetary_value",
     "avg_order_value",
